@@ -1,9 +1,14 @@
 import {Bson,MongoClient} from "https://deno.land/x/mongo@v0.30.1/mod.ts";
 
+import { config as cfg } from "https://deno.land/x/dotenv/mod.ts";
+
+console.log(cfg());
+const config = cfg()
+
 const client = new MongoClient();
 
 //  "mongodb+srv://mudassir456:mudassir456@cluster0.bi8q1.mongodb.net/deno-explore?retryWrites=true&w=majority"
-let connectionUrl: string = "mongodb+srv://mudassir456:mudassir456@cluster0.bi8q1.mongodb.net/deno-explore?authMechanism=SCRAM-SHA-1"
+let connectionUrl: string = config.connection_string
 
 // https://cloud.mongodb.com/v2/5f11aa5fb5dc041e9a04d9e1#metrics/replicaSet/629e24b28265e90e2cb73e7d/explorer/New_DB/products/find
 

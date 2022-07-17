@@ -1,7 +1,15 @@
+import { config as cfg } from "https://deno.land/x/dotenv/mod.ts";
+
+console.log(cfg());
+const config = cfg()
+
+
 console.log('whatsup Guys: This is DENO 🦕');
 
 import { opine } from "https://deno.land/x/opine@2.2.0/mod.ts";
 import DB_Connection from './config/DB_Config.ts'
+
+// app.ts
 
 import route from './routes/userRoute.ts'
 
@@ -15,6 +23,7 @@ app.get("/", function (req:any, res:any) {
 });
 
 app.use('/routes/',route)
+console.log(config.PORT);
 
 app.listen(
   3000,
