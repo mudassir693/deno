@@ -64,4 +64,9 @@ route.get('/update',async(req:any,res:any)=>{
         console.log('error: ',error)
     }
 })
+
+route.get('/delete',async(req:any,res:any)=>{
+    const resp = await User.deleteOne({_id: new ObjectId('62d42e7bdd3bae09cc41ad0d')})
+    return res.setStatus(200).json({data: 'deleted..'})
+})
 export default route
