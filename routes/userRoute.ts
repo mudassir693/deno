@@ -31,22 +31,37 @@ route.get('/hello',async (req:any,res:any)=>{
 })
 
 
+
 route.get('/get',async (req:any,res:any)=>{
 
     const resp = await User.find().toArray()
     return  res.setStatus(200).json({data: resp})
 })
 
+route.get('/getOne',async (req:any,res:any)=>{
+    // let _id: string;
+    // let a: ObjectId;
+
+    const resp = await User.findOne({_id: new ObjectId('62d42e7bdd3bae09cc41ad0d')})
+    return  res.setStatus(200).json({data: resp})
+})
+
+
+
 route.get('/update',async(req:any,res:any)=>{
-    const newData = {
-        Name:"Updated User(2)",
-        Email:"upd@gmail.com"
+    try{
+        const newData = {
+            Name:"Updated User(3)",
+            Email:"upd@gmail.com"
+        }
+
+        const resp = await User.updateOne({_id: new ObjectId('62d42e7bdd3bae09cc41ad0d')}, {$set:newData} )
+        console.log('here is resp: ', resp)
+
+        return res.setStatus(200).json({data:resp})
     }
-
-    const resp = await User.updateOne({Name: "ObjectId('62d42e7bdd3bae09cc41ad0d')"}, {$set:newData} )
-    console.log('here is resp: ', resp)
-
-    return res.setStatus(200).json({data:resp})
-
+    catch (error) {
+        console.log('error: ',error)
+    }
 })
 export default route
